@@ -15,4 +15,3 @@ st.line_chart(tickerDf.Close)
 st.write(""" WSM Trading volume over the time period of  1/1/2019-3/1/2023""" )
 st.line_chart(tickerDf.Volume)
 
-st.title(""" This is a Jerome J Brown Production""")
