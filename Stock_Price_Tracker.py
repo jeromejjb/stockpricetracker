@@ -1,17 +1,32 @@
-import streamlit as st 
-import yfinance as yf 
-import pandas as pandas 
+import streamlit as st
+import yfinance as yf
+import pandas as pd
 
-st.write(""" # Online Stock Price Tracker""")
+st.write("""# Online Stock Price Tracker""")
 
-
+# Define the ticker symbol
 tickerSymbol = "WSM"
+
+# Retrieve the data
 tickerData = yf.Ticker(tickerSymbol)
+
+# Get the historical price data
 tickerDf = tickerData.history(period='id', start='2019-1-1', end='2023-03-1')
 
-st.write("""Data for William Sonoma INC price over Time period 1/1/2019-3/1/2023 """)                                                    
+# Get the balance sheet and income statement data
+balance_sheet = tickerData.balance_sheet
+income_statement = tickerData.financials
+
+# Display the balance sheet and income statement data
+st.write("""## Balance Sheet""")
+st.write(balance_sheet)
+
+st.write("""## Income Statement""")
+st.write(income_statement)
+
+# Display the price and volume data
+st.write("""## Price Data""")
 st.line_chart(tickerDf.Close)
 
-st.write(""" WSM Trading volume over the time period of  1/1/2019-3/1/2023""" )
+st.write("""## Volume Data""")
 st.line_chart(tickerDf.Volume)
-
